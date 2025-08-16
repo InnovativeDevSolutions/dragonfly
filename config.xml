@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArmaDragonflyClient>
+  <!-- Host IP -->
+  <Settings>127.0.0.1</Settings>
+  <!-- Host Port -->
+  <Settings>6379</Settings>
+  <!-- Host Password -->
+  <Settings>xyz123</Settings>
+  <!-- Context logging enabled -->
+  <Settings>true</Settings>
+  <!-- Debug mode enabled -->
+  <Settings>true</Settings>
+</ArmaDragonflyClient>

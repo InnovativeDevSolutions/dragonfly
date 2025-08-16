@@ -1,0 +1,12 @@
+C:\Users\innov\Desktop\Projects\dragonfly\extension\bin\Release\net8.0\win-x64\ArmaDragonflyClient_x64.deps.json
+C:\Users\innov\Desktop\Projects\dragonfly\extension\bin\Release\net8.0\win-x64\ArmaDragonflyClient_x64.dll
+C:\Users\innov\Desktop\Projects\dragonfly\extension\bin\Release\net8.0\win-x64\ArmaDragonflyClient_x64.pdb
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient.AssemblyInfoInputs.cache
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient.AssemblyInfo.cs
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient.csproj.CoreCompileInputs.cache
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient_x64.dll
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\refint\ArmaDragonflyClient_x64.dll
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient_x64.pdb
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ref\ArmaDragonflyClient_x64.dll
+C:\Users\innov\Desktop\Projects\dragonfly\extension\obj\Release\net8.0\win-x64\ArmaDragonflyClient.sourcelink.json

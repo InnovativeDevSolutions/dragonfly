@@ -1,0 +1,12 @@
+name = "ArmaDragonflyClient";
+author = "IDSolutions";
+picture = "title_co.paa";
+logoSmall = "icon_64_ca.paa";
+logo = "icon_128_ca.paa";
+logoOver = "icon_128_highlight_ca.paa";
+tooltip = "ArmaDragonflyClient";
+tooltipOwned = "ArmaDragonflyClient";
+overview = "IDSolutions ArmaDragonflyClient - Official Modification";
+description = "IDS Dragonfly - Version 1.0.0";
+action = "https://github.com/jschmidt92/ArmaDragonflyClient"; 
+actionName = "Website";

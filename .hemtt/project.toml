@@ -1,0 +1,23 @@
+name = "ArmaDragonflyClient"
+author = "IDSolutions"
+prefix = "dragonfly"
+mainprefix = "z"
+
+[files]
+include = [
+    "*.dll",
+    "*.json",
+    "*.paa",
+    "*.so",
+    "dragonfly/**",
+    "ArmaDragonflyClient_x64.dll",
+    "ArmaDragonflyClient_x64.so",
+    "config.xml",
+    "dragonfly_version.json",
+    "LICENSE",
+    "mod.cpp",
+    "README.md"
+]
+
+[version]
+git_hash = 0
