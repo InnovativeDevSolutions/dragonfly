@@ -1,2 +1,0 @@
-C:\Users\innov\Desktop\Projects\dragonfly\extension\bin\Release\net8.0\win-x64\publish\ArmaDragonflyClient_x64.dll
-C:\Users\innov\Desktop\Projects\dragonfly\extension\bin\Release\net8.0\win-x64\publish\ArmaDragonflyClient_x64.pdb
