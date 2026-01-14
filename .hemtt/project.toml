@@ -9,6 +9,7 @@ include = [
     "*.json",
     "*.paa",
     "*.so",
+    "docs/**",
     "dragonfly/**",
     "ArmaDragonflyClient_x64.dll",
     "ArmaDragonflyClient_x64.so",

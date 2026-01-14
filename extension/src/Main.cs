@@ -55,7 +55,7 @@ namespace ArmaDragonflyClient
         /// <summary>
         /// The buffer size for database operations.
         /// </summary>
-        public const int AdcBufferSize = 10240;
+        public const int AdcBufferSize = 20480;
 
         /// <summary>
         /// Gets the path for the config file.

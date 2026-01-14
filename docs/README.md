@@ -2,6 +2,9 @@
 
 This documentation provides details on all functions available in `ArmaDragonflyClient`. These functions allow you to interact with the in-memory database system for Arma 3.
 
+## Important Payload Limit
+Keep payloads under 20,480 bytes. This is the maximum size the engine can send or receive at one time. If you expect a response larger than 20,480 bytes, provide a callback function so the mod can use its internal fetch/chunking flow and deliver the reconstructed data to your callback.
+
 ## Function Categories
 
 The functions are categorized by their purpose:

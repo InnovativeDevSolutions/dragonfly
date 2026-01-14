@@ -25,10 +25,10 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # Rename the native library to the expected name
-$dllPath = Join-Path $nativeOutputPath "ArmaRAMDb.dll"
-$libDllPath = Join-Path $nativeOutputPath "ArmaRAMDb_x64.dll"
+$dllPath = Join-Path $nativeOutputPath "ArmaDragonflyClient.dll"
+$libDllPath = Join-Path $nativeOutputPath "ArmaDragonflyClient_x64.dll"
 if (Test-Path $dllPath) {
-    Write-Host "Renaming native library to ArmaRAMDb_x64.dll..."
+    Write-Host "Renaming native library to ArmaDragonflyClient_x64.dll..."
     Move-Item -Path $dllPath -Destination $libDllPath -Force
 }
 

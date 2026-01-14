@@ -33,10 +33,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # Rename the native library to the expected name
-dllPath="$nativeOutputPath/ArmaRAMDb.$libExtension"
-libDllPath="$nativeOutputPath/ArmaRAMDb_x64.$libExtension"
+dllPath="$nativeOutputPath/ArmaDragonflyClient.$libExtension"
+libDllPath="$nativeOutputPath/ArmaDragonflyClient_x64.$libExtension"
 if [ -f "$dllPath" ]; then
-    echo "Renaming native library to ArmaRAMDb_x64.$libExtension..."
+    echo "Renaming native library to ArmaDragonflyClient_x64.$libExtension..."
     mv "$dllPath" "$libDllPath"
 fi
 
