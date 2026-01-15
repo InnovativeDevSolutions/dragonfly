@@ -5,6 +5,22 @@ This documentation provides details on all functions available in `ArmaDragonfly
 ## Important Payload Limit
 Keep payloads under 20,480 bytes. This is the maximum size the engine can send or receive at one time. If you expect a response larger than 20,480 bytes, provide a callback function so the mod can use its internal fetch/chunking flow and deliver the reconstructed data to your callback.
 
+## Installation
+
+1. Subscribe to the mod on Steam Workshop or download from releases
+2. Create a folder named `@dragonfly` in your Arma 3 root directory (same location as `arma3_x64.exe` and/or `arma3server_x64.exe`)
+3. Copy `config.xml` from the mod folder into `@dragonfly\config.xml`
+4. Configure the settings in `config.xml` as needed:
+   - Host IP
+   - Host Port
+   - Host Password (optional)
+   - Context logging (true/false)
+   - Debug mode (true/false)
+5. Launch Arma 3 with the mod enabled
+
+The `@dragonfly` folder will store:
+- `logs\` - Debug and error logs (if debug mode is enabled)
+
 ## Function Categories
 
 The functions are categorized by their purpose:
