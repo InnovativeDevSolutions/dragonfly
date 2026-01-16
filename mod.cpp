@@ -8,5 +8,5 @@ tooltip = "ArmaDragonflyClient";
 tooltipOwned = "ArmaDragonflyClient";
 overview = "IDSolutions ArmaDragonflyClient - Official Modification";
 description = "IDS Dragonfly - Version 1.0.0";
-action = "https://github.com/jschmidt92/ArmaDragonflyClient"; 
+action = "https://github.com/innovativedevsolutions/dragonfly"; 
 actionName = "Website";

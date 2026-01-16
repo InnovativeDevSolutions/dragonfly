@@ -29,7 +29,7 @@ This ultra-fast in-memory data store offers unparalleled performance and scalabi
   color: neutral
   icon: simple-icons-github
   size: xl
-  to: https://github.com/jschmidt92/dragonfly
+  to: https://github.com/innovativedevsolutions/dragonfly
   variant: outline
   ---
   Star on GitHub

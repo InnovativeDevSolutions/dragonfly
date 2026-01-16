@@ -168,8 +168,8 @@ The workflow automatically rebuilds and redeploys the site.
 ### Site Settings (app.config.ts)
 - Site name: ArmaDragonflyClient
 - Description: Ultra-Fast In-Memory Database for Arma 3 powered by DragonflyDB
-- URL: https://jschmidt92.github.io
-- GitHub: jschmidt92/dragonfly
+- URL: https://innovativedevsolutions.github.io
+- GitHub: innovativedevsolutions/dragonfly
 
 ### GitHub Pages (nuxt.config.ts)
 - Base URL: /dragonfly/
@@ -203,7 +203,7 @@ The main differences are:
    ```
 
 3. Access the live documentation at:
-   https://jschmidt92.github.io/dragonfly/
+   https://innovativedevsolutions.github.io/dragonfly/
 
 4. (Optional) Add a custom domain in GitHub Pages settings
 
