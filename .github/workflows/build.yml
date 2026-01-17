@@ -7,6 +7,19 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: '8.0.x'
+            - name: Build Extension (Windows)
+              run: dotnet publish extension/ArmaDragonflyClient.csproj -f net8.0 -c Release -r win-x64 -p:PublishAot=true -p:NativeLib=Shared -p:SelfContained=true
+            - name: Build Extension (Linux)
+              run: dotnet publish extension/ArmaDragonflyClient.csproj -f net8.0 -c Release -r linux-x64 -p:PublishAot=true -p:NativeLib=Shared -p:SelfContained=true
+            - name: Copy Extensions to Artifacts
+              run: |
+                  mkdir -p extension/artifacts/native
+                  cp extension/bin/Release/net8.0/win-x64/publish/ArmaDragonflyClient_x64.dll extension/artifacts/native/
+                  cp extension/bin/Release/net8.0/linux-x64/publish/ArmaDragonflyClient_x64.so extension/artifacts/native/
             - name: Setup HEMTT
               uses: arma-actions/hemtt@v1
             - name: Run HEMTT build
