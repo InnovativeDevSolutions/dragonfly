@@ -61,9 +61,8 @@ jobs:
               if: startsWith(github.ref, 'refs/tags/')
               uses: softprops/action-gh-release@v2
               with:
-                  files: |
-                      releases/dragonfly-latest.zip
-                      releases/dragonfly-*.zip
+                  files: releases/dragonfly-*.zip
                   draft: false
                   prerelease: false
                   generate_release_notes: true
+                  fail_on_unmatched_files: true
