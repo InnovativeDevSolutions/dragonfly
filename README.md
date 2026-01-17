@@ -12,7 +12,7 @@ If something is broken, contact **J. Schmidt92** or open a new issue on **[GitHu
 
 </br>
 
-**For more information, [read the Docs.](docs/README.md)**
+**For more information, [read the Docs.](https://innovativedevsolutions.github.io/dragonfly/)**
 
 **For Roadmap, [visit the project page.](https://github.com/innovativedevsolutions/dragonfly/projects)** _(WIP)_
 
