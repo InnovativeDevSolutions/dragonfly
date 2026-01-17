@@ -18,7 +18,7 @@ This ultra-fast in-memory data store offers unparalleled performance and scalabi
   ---
   color: primary
   size: xl
-  to: /getting-started/installation
+  to: /getting-started/introduction
   trailing-icon: i-lucide-arrow-right
   ---
   Get started
