@@ -52,5 +52,5 @@ jobs:
             - name: Upload Release
               uses: actions/upload-artifact@v4
               with:
-                  name: dragonfly-latest
-                  path: release/dragonfly-latest.zip
+                  name: dragonfly
+                  path: releases/@dragonfly-*.zip
