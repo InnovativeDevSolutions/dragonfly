@@ -2,6 +2,9 @@ name: Build
 
 on: [push]
 
+permissions:
+    contents: write
+
 jobs:
     build-extension:
         strategy:
@@ -55,11 +58,12 @@ jobs:
                   name: dragonfly
                   path: releases/dragonfly-*.zip
             - name: Create GitHub Release
-              uses: softprops/action-gh-release@v1
               if: startsWith(github.ref, 'refs/tags/')
+              uses: softprops/action-gh-release@v2
               with:
-                  files: releases/dragonfly-*.zip
+                  files: |
+                      releases/dragonfly-latest.zip
+                      releases/dragonfly-*.zip
                   draft: false
                   prerelease: false
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  generate_release_notes: true
