@@ -56,18 +56,36 @@ namespace ArmaDragonflyClient
         ///     on the specified chunk size, ensuring none exceed the given limit.
         /// </summary>
         /// <param name="data">The string to be divided into smaller chunks.</param>
-        /// <param name="chunkSize">The size of each chunk.</param>
-        /// <return>A list of substrings, each with a length up to the specified chunk size.</return>
-        public static List<string> SplitIntoChunks(string data, int chunkSize)
+        /// <param name="maxByteSize">The maximum byte size for each chunk.</param>
+        /// <return>A list of substrings, each with a byte size up to the specified limit.</return>
+        public static List<string> SplitIntoChunks(string data, int maxByteSize)
         {
-            var totalChunks = (int)Math.Ceiling(data.Length / (double)chunkSize);
             List<string> chunks = [];
+            var encoding = Encoding.UTF8;
+            var currentIndex = 0;
 
-            for (var i = 0; i < totalChunks; i++)
+            while (currentIndex < data.Length)
             {
-                var start = i * chunkSize;
-                var end = Math.Min(data.Length, start + chunkSize);
-                chunks.Add(data[start..end]);
+                var remainingLength = data.Length - currentIndex;
+                var chunkLength = remainingLength;
+
+                while (chunkLength > 0)
+                {
+                    var candidate = data.Substring(currentIndex, chunkLength);
+                    if (encoding.GetByteCount(candidate) <= maxByteSize)
+                    {
+                        chunks.Add(candidate);
+                        currentIndex += chunkLength;
+                        break;
+                    }
+                    chunkLength--;
+                }
+
+                if (chunkLength == 0)
+                {
+                    chunks.Add(data.Substring(currentIndex, 1));
+                    currentIndex++;
+                }
             }
 
             return chunks;
@@ -91,18 +109,21 @@ namespace ArmaDragonflyClient
         public static string CheckByteCount(string uniqueId, int bufferSize, string data, string function = "",
             string entity = "", bool call = false)
         {
+            if (!data.StartsWith('[') || !data.EndsWith(']')) data = Main.SerializeList([.. data.Split(',')]);
+
             var byteCount = Encoding.UTF8.GetByteCount(data);
 
-            if (!data.StartsWith('[') || !data.EndsWith(']')) data = Main.SerializeList([.. data.Split(',')]);
             if (byteCount > bufferSize)
             {
                 var chunks = SplitIntoChunks(data, bufferSize);
                 var totalChunks = chunks.Count;
+                var cleanFunction = function.Trim('"');
+                var cleanEntity = entity.Trim('"');
 
                 for (var i = 0; i < totalChunks; i++)
                 {
                     var escapedChunk = chunks[i].Replace("\"", "\"\"");
-                    var chunk = $"[\"{uniqueId}\", \"{function}\", {i + 1}, {totalChunks}, \"{escapedChunk}\", {call.ToString().ToLower()}, \"{entity}\"]";
+                    var chunk = $"[\"{uniqueId}\", \"{cleanFunction}\", {i + 1}, {totalChunks}, \"{escapedChunk}\", {call.ToString().ToLower()}, \"{cleanEntity}\"]";
                     Main.Log($"Chunk data: {chunk}", "debug");
                     Main.Callback("ArmaDragonflyClient", "dragonfly_db_fnc_fetch", chunk);
                 }
@@ -110,48 +131,15 @@ namespace ArmaDragonflyClient
                 return "OK";
             }
 
-            Main.Log($"Data: {data}", "debug");
-            return data;
-        }
-
-        /// <summary>
-        ///     Processes a given message string for pub/sub operations, checks its byte size, and splits it into chunks if it exceeds the specified buffer
-        ///     size.
-        ///     If chunking is necessary, it sends each chunk to a callback function and returns metadata about the operation.
-        /// </summary>
-        /// <param name="uniqueId">A unique identifier used to associate the processed data.</param>
-        /// <param name="message">The message string to be processed, analyzed for byte size, and optionally chunked.</param>
-        /// <param name="eventType">The type of event associated with the processing.</param>
-        /// <param name="eventName">The name of the event associated with the processing.</param>
-        /// <param name="target">An optional target name linked to the processing operation, or null if it does not apply.</param>
-        /// <param name="bufferSize">The maximum permissible byte size for the data before it is split into chunks.</param>
-        /// <return>
-        ///     A string representing either the processed data or metadata, including chunking status and the unique
-        ///     identifier.
-        /// </return>
-        public static string CheckByteCountPubSub(string uniqueId, string message, string eventType, string eventName, string target = null, int bufferSize = Main.AdcBufferSize)
-        {
-            var byteCount = Encoding.UTF8.GetByteCount(message);
-
-            if (!message.StartsWith('[') || !message.EndsWith(']')) message = Main.SerializeList([.. message.Split(',')]);
-            if (byteCount > bufferSize)
+            if (!string.IsNullOrEmpty(function))
             {
-                var chunks = SplitIntoChunks(message, bufferSize);
-                var totalChunks = chunks.Count;
-
-                for (var i = 0; i < totalChunks; i++)
-                {
-                    var escapedChunk = chunks[i].Replace("\"", "\"\"");
-                    var chunk = $"[\"{uniqueId}\", \"{eventType}\", {i + 1}, {totalChunks}, \"{escapedChunk}\", true, \"{target ?? ""}\"]";
-                    Main.Log($"PubSub Chunk data: {chunk}", "debug");
-                    Main.Callback("ArmaDragonflyClient", eventName, chunk);
-                }
-
+                Main.Log($"Data: {data}", "debug");
+                Main.Callback("ArmaDragonflyClient", function.Trim('"'), data);
                 return "OK";
             }
 
-            Main.Log($"PubSub Data: {message}", "debug");
-            return message;
+            Main.Log($"Data: {data}", "debug");
+            return data;
         }
     }
 }

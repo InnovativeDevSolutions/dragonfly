@@ -16,6 +16,8 @@
  * Public: Yes
  */
 
+dragonfly_db_fetch_array = [];
+
 private _dll = "ArmaDragonflyClient" callExtension ["version", []];
 
 diag_log text format ["ArmaDragonflyClient: DLL Version %1 found", _dll];

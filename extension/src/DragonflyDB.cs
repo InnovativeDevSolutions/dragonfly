@@ -7,7 +7,6 @@ namespace ArmaDragonflyClient
     public class DragonflyDB
     {
         private static readonly DragonflyClient _client = new(Main.AdcHost, Main.AdcPort, Main.AdcPassword);
-        private static CancellationTokenSource _listenerCts;
 
         #region Generic
         public static string Raw(string cmd, params string[] args)
@@ -300,81 +299,6 @@ namespace ArmaDragonflyClient
             var response = _client.SendCommand($"HVALS {key}");
 
             return [.. response.Split(',')];
-        }
-        #endregion
-
-        #region Pub/Sub
-        public static void DragonflyPublish(string channel, string message, string uniqueId)
-        {
-            _client.Connect();
-            _client.SendCommand($"PUBLISH {channel} {message}");
-
-            Main.Log($"ArmaDragonflyClient 'PUBLISH', Channel: '{channel}', Message: '{message}'", "debug");
-        }
-
-        public static void DragonflySubscribe(string channel, string eventType, string eventName, string uniqueId, string target = null, int bufferSize = Main.AdcBufferSize)
-        {
-            _client.Connect();
-
-            try
-            {
-                _client.SendCommand($"SUBSCRIBE {channel}");
-                Main.Log($"ArmaDragonflyClient 'SUBSCRIBE', Channel: '{channel}'", "debug");
-
-                _listenerCts = new CancellationTokenSource();
-
-                Task.Run(() =>
-                {
-                    StartMessageListener(message =>
-                    {
-                        Utils.CheckByteCountPubSub(uniqueId, message, eventType, eventName, target, bufferSize);
-                    });
-                });
-            }
-            catch (Exception ex)
-            {
-                Main.Log($"ArmaDragonflyClient 'SUBSCRIBE', Exception: '{ex.Message}'", "error");
-                throw;
-            }
-        }
-
-        private static void StartMessageListener(Action<string> messageHandler)
-        {
-            try
-            {
-                while (!_listenerCts.Token.IsCancellationRequested)
-                {
-                    var response = _client.ReceiveMessage();
-
-                    if (!string.IsNullOrEmpty(response))
-                    {
-                        var messageParts = response.Split(',');
-                        if (messageParts.Length >= 3)
-                        {
-                            var messageType = messageParts[0];
-                            var channel = messageParts[1];
-                            var message = messageParts[2];
-
-                            Main.Log($"ArmaDragonflyClient 'SUBSCRIBE', Channel: '{channel}', Message: '{message}'", "debug");
-                            messageHandler(message);
-                        }
-                    }
-
-                    Thread.Sleep(10);
-                }
-            }
-            catch (Exception ex)
-            {
-                Main.Log($"ArmaDragonflyClient 'SUBSCRIBE', Exception: '{ex.Message}'", "error");
-                throw;
-            }
-        }
-
-        public static void StopMessageListener()
-        {
-            _listenerCts.Cancel();
-            _listenerCts.Dispose();
-            _listenerCts = null;
         }
         #endregion
     }
